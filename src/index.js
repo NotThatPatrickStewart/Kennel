@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Kennel } from './components/Kennel';
 
+//this block will only ever happen in index.js
+//other than specific app name (here: Kennel) this will be included automatically
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Kennel />
   </React.StrictMode>,
   document.getElementById('root')
 );
