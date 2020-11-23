@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { Kennel } from './components/Kennel';
+// import { Location } from './components/locations/Location';
+// import { Employee } from './components//employees/Employee';
+// import { Customer } from './components//customers/Customer';
 
 //this block will only ever happen in index.js
 //other than specific app name (here: Kennel) this will be included automatically
