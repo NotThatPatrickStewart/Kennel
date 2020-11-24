@@ -1,8 +1,9 @@
 import React from "react"
 import { Animal } from "./animal/Animal" //Don't need .js in react
-import { Location } from "./location/Location" //Don't need .js in react
-import { Employee } from "./employee/Employee" //Don't need .js in react
-import { Customer } from "./customer/Customer" //Don't need .js in react
+import { LocationList } from "./location/LocationList" 
+import { LocationProvider } from "./location/LocationProvider" 
+import { Employee } from "./employee/Employee" 
+import { Customer } from "./customer/Customer" 
 import "./Kennel.css"
 
 export const Kennel = () => ( //single line function with implied return
@@ -27,10 +28,10 @@ export const Kennel = () => ( //single line function with implied return
         </article>
 
         <h2>Locations</h2>
-        <article className="locations">
-            <Location />
-            <Location />
-        </article>
+        <LocationProvider>
+            <LocationList />
+        </LocationProvider>
+           
 
         <h2>Employees</h2>
         <article className="employees">
