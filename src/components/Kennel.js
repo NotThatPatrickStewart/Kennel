@@ -6,6 +6,8 @@ import { Customer } from "./customer/Customer"
 import "./Kennel.css"
 import { AnimalList } from "./animal/AnimalList" 
 import { AnimalProvider } from "./animal/AnimalProvider"
+import { EmployeeProvider } from "./employee/EmployeeProvider"
+import { EmployeeList } from "./employee/EmployeeList"
 
 export const Kennel = () => ( //single line function with implied return
 
@@ -33,11 +35,9 @@ export const Kennel = () => ( //single line function with implied return
            
 
         <h2>Employees</h2>
-        <article className="employees">
-            <Employee />
-            <Employee />
-            <Employee />
-        </article>
+        <EmployeeProvider>
+            <EmployeeList />
+        </EmployeeProvider>
 
         <h2>Customers</h2>
         <article className="customers">
