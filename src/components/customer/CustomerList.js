@@ -29,7 +29,7 @@ export const CustomerList = () => {
     return (
         <div className="customers">
         {
-            customers.map(loc => <Customer key={loc.id} customer={loc} />)
+            customers.map(customer => <Customer key={customer.id} customer={customer} />)
         }
         </div>
     )
