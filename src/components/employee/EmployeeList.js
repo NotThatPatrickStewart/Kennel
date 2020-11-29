@@ -3,7 +3,7 @@ import { EmployeeContext } from "./EmployeeProvider"
 import { Employee } from "./Employee"
 import "./Employee.css"
 
-export const EmployeeList = () => {
+export const EmployeeList = (props) => {
     // This state changes when `getEmployees()` is invoked below
     const { employees, getEmployees } = useContext(EmployeeContext)
 
@@ -21,16 +21,20 @@ export const EmployeeList = () => {
         This effect is solely for learning purposes. The effect
         it is responding to is that the employee state changed.
     */
-    useEffect(() => {
-        console.log("EmployeeList: Employee state changed")
-        console.log(employees)
-    }, [employees])
+    // useEffect(() => {
+    //     console.log("EmployeeList: Employee state changed")
+    //     console.log(employees)
+    // }, [employees])
 
     return (
         <div className="employees">
-        {
-            employees.map(loc => <Employee key={loc.id} employee={loc} />)
-        }
+            <h1>Employees</h1>
+            <button onClick={() => props.history.push("/employees/create")}>
+                Add Employee
+            </button>
+            <article className="employeeList">
+                {employees.map(employee => <Employee key={employee.id} employee={employee} />)}
+            </article>
         </div>
     )
 }
