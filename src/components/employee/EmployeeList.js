@@ -21,10 +21,10 @@ export const EmployeeList = (props) => {
         This effect is solely for learning purposes. The effect
         it is responding to is that the employee state changed.
     */
-    useEffect(() => {
-        console.log("EmployeeList: Employee state changed")
-        console.log(employees)
-    }, [employees])
+    // useEffect(() => {
+    //     console.log("EmployeeList: Employee state changed")
+    //     console.log(employees)
+    // }, [employees])
 
     return (
         <div className="employees">
