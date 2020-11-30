@@ -19,6 +19,7 @@ export const EmployeeForm = (props) => {
     */
 
     const name = useRef(null)
+        //useRef (null) returns an object that has a current property set to the value of the argument i.e. {current: null}
     const location = useRef(null)
     const animal = useRef(null)
 
@@ -42,8 +43,8 @@ export const EmployeeForm = (props) => {
         const locationId = parseInt(location.current.value)
         const animalId = parseInt(animal.current.value)
 
-        if (locationId === 0) {
-            window.alert("Please select a location")
+        if (locationId === 0 || animalId === 0) {
+            window.alert("Please select a location and an animal")
         }
         else {
             addEmployee({
