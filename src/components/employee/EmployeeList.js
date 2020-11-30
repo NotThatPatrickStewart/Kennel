@@ -2,10 +2,16 @@ import React, { useContext, useEffect } from "react"
 import { EmployeeContext } from "./EmployeeProvider"
 import { Employee } from "./Employee"
 import "./Employee.css"
+import { LocationContext } from "../location/LocationProvider"
+import { AnimalContext } from "../animal/AnimalProvider"
+
 
 export const EmployeeList = (props) => {
     // This state changes when `getEmployees()` is invoked below
     const { employees, getEmployees } = useContext(EmployeeContext)
+    const { animals, getAnimals } = useContext(AnimalContext)
+    const { locations, getLocations } = useContext(LocationContext)
+
 
     /*
         What's the effect this is reponding to? Component was
@@ -14,7 +20,9 @@ export const EmployeeList = (props) => {
     */
     useEffect(() => {
         console.log("EmployeeList: Initial render before data")
-        getEmployees()
+        getAnimals()
+        .then(getLocations)
+        .then(getEmployees)
     }, [])
 
     /*
@@ -32,9 +40,15 @@ export const EmployeeList = (props) => {
             <button onClick={() => props.history.push("/employees/create")}>
                 Add Employee
             </button>
-            <article className="employeeList">
-                {employees.map(employee => <Employee key={employee.id} employee={employee} />)}
-            </article>
+
+        {console.log(employees, animals, locations)}
+        {
+                employees.map(employee => {
+                    const clinic = locations.find(l => l.id === employee.locationId)
+                    const pet = animals.find(a => a.id === employee.animalId)
+                return <Employee key={employee.id} employee={employee} location={clinic} animal={pet} />
+                })
+        }
         </div>
     )
 }
