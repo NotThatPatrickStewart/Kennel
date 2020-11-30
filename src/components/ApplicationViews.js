@@ -30,7 +30,7 @@ export const ApplicationViews = (props) => {
             />
 
             <Route
-              exact path="/employees/create"
+              path="/employees/create"
               render={(props) => <EmployeeForm {...props} />}
             />
           </LocationProvider>
