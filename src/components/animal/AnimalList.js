@@ -6,10 +6,10 @@ import { LocationContext } from "../location/LocationProvider"
 // import { CustomerContext } from "../customer/CustomerProvider"
 
 
-export const AnimalList = (props) => {
+export const AnimalList = ({history}) => {
     // This state changes when `getAnimals()` is invoked below
     const { animals, getAnimals } = useContext(AnimalContext)
-    const { locations, getLocations } = useContext(LocationContext)
+    // const { locations, getLocations } = useContext(LocationContext)
     // const { customers, getCustomers } = useContext(CustomerContext)
 
     /*
@@ -19,10 +19,10 @@ export const AnimalList = (props) => {
     */
     useEffect(() => {
         // console.log("AnimalList: Initial render before data")
-        getLocations()
+        getAnimals()
         
         // .then(getCustomers)
-        .then(getAnimals)
+        // .then(getAnimals)
     }, [])
 
     /*
@@ -35,22 +35,23 @@ export const AnimalList = (props) => {
     // }, [animals])
 
     return (
-        <div className="animals">
-        {/* {console.log(animals, locations, customers)} */}
+        <>
+            <h1>Animals</h1>
 
-        <h1>Animals</h1>
-            <button onClick={() => props.history.push("/animals/create")}>
-                Make Appointment
-            </button>
-
-        {
-            animals.map(animal => {
-                // const owner = customers.find(c => c.id === animal.customerId)
-                const clinic = locations.find(l => l.id === animal.locationId)
-                // debugger
-            return <Animal key={animal.id} animal={animal} location={clinic} /> //customer={owner}
-            })
-        }
-        </div>
+            {/* {console.log(animals, locations, customers)} */}
+                <button onClick={() => history.push("/animals/create")}>
+                    Make Appointment
+                </button>
+            <div className="animals">
+            {
+                animals.map(animal => {
+                    // const owner = customers.find(c => c.id === animal.customerId)
+                    // const clinic = locations.find(l => l.id === animal.locationId)
+                    // debugger
+                return <Animal key={animal.id} animal={animal} /> //customer={owner} location={clinic}
+                })
+            }
+            </div>
+        </>
     )
 }
