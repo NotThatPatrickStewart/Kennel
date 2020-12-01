@@ -17,9 +17,19 @@ export const ApplicationViews = (props) => {
   return (
     <>
       <LocationProvider>
-      <Route path="/locations/:locationId(\d+)" render={
+        <EmployeeProvider>
+          <AnimalProvider>
+      <Route 
+        exact path="/locations"
+              render={(props) => <LocationList {...props} />}
+            />
+
+        <Route
+        path="/locations/:locationId(\d+)" render={
         props => <LocationDetail {...props} />
     } />
+          </AnimalProvider>
+        </EmployeeProvider>
       </LocationProvider>
 
       <EmployeeProvider>
