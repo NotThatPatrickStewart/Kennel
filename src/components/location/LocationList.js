@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 import "./Location.css"
 
 
-export const LocationList = (props) => {
+export const LocationList = () => { //removed props parameter, appears to still be working
     // This state changes when `getLocations()` is invoked below
     const { locations, getLocations } = useContext(LocationContext)
     const { employees, getEmployees } = useContext(EmployeeContext)
@@ -36,18 +36,18 @@ export const LocationList = (props) => {
         <div className="locations">
         {
             locations.map(location => {
-                location.employees = employees.filter(e => e.locationId === location.id)
+                location.employees = employees.filter(e => e.locationId === location.id) //adds new key value pairs, whose values are arrays
                 location.animals = animals.filter(a => a.locationId === location.id)
 
-                return <article key={`location--${location.id}`} className="card location" style={{ width: `18red` }}>
+                return <article key={`location--${location.id}`} className="card location" style={{ width: `18rem` }}>
                     <section className="card-body">
                         <Link className="card-link"
                             to={{
                                 pathname: `/locations/${location.id}`,
-                                state: { chosenLocation: location }
+                                state: { chosenLocation: location } //location here is parameter from .map callback function
                             }}>
                                 <h2 className="card-title"> {location.name} </h2>
-                            </Link>
+                        </Link>
                     </section>
                     <section>
                         {`${location.employees.length} ${location.employees.length === 1 ? "employee" : "employees"}`}
