@@ -34,6 +34,7 @@ export const EmployeeDetail = props => {
         setLocation(location)
     }, [locations])
 
+    //debugger //hit play to make work
     return (
         <section className="employee">
             <h3 className="employee__name">{employee.name}</h3>
