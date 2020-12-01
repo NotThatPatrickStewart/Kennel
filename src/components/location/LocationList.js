@@ -47,7 +47,7 @@ export const LocationList = (props) => {
                                 state: { chosenLocation: location }
                             }}>
                                 <h2 className="card-title"> {location.name} </h2>
-                            </Link>
+                        </Link>
                     </section>
                     <section>
                         {`${location.employees.length} ${location.employees.length === 1 ? "employee" : "employees"}`}
