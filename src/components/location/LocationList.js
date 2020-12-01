@@ -44,7 +44,7 @@ export const LocationList = (props) => {
                         <Link className="card-link"
                             to={{
                                 pathname: `/locations/${location.id}`,
-                                state: { chosenLocation: location }
+                                state: { chosenLocation: location } //location here is parameter to .map callback function
                             }}>
                                 <h2 className="card-title"> {location.name} </h2>
                         </Link>
