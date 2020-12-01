@@ -3,7 +3,7 @@ import { AnimalContext } from "./AnimalProvider"
 import "./Animal.css"
 
 export const AnimalSearch = (props) => {
-    const { setSearch } = useContext(AnimalContext)
+    const { setSearchTerms } = useContext(AnimalContext)
 
     return (
         <>
@@ -11,7 +11,7 @@ export const AnimalSearch = (props) => {
             <input type="text"
                 className="input--wide"
                 onKeyUp={
-                    (keyEvent) => setSearch(keyEvent.target.value)
+                    (keyEvent) => setSearchTerms(keyEvent.target.value)
                 }
                 placeholder="Search for an animal" />
         </>
