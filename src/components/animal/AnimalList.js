@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react"
 import { AnimalContext } from "./AnimalProvider"
 import { Animal } from "./Animal"
 import "./Animal.css"
-import { LocationContext } from "../location/LocationProvider"
+// import { LocationContext } from "../location/LocationProvider"
 // import { CustomerContext } from "../customer/CustomerProvider"
 
 
@@ -18,7 +18,10 @@ export const AnimalList = ({history}) => {
         "mounted" to the DOM. React renders blank HTML first,
         then gets the data, then re-renders.
     */
-    useEffect(() => {
+
+            //PUT DEUBGGERS OR CONSOLE LOGS IN BOTH useEffects TO SEE WHAT IS HAPPENING
+
+    useEffect(() => { 
         // console.log("AnimalList: Initial render before data")
         getAnimals()
         
@@ -35,7 +38,7 @@ export const AnimalList = ({history}) => {
     useEffect(() => {
         if (searchTerms !== "") {
             // If the search field is not blank, display matching animals
-            const subset = animals.filter(animal => animal.name.toLowerCase().includes(searchTerms))
+            const subset = animals.filter(animal => animal.name.toLowerCase().includes(searchTerms.toLowerCase())) //added second .toLowerCase to remove case sensitivity
             setFiltered(subset)
         } else {
         // If the search field is blank, display all animals
