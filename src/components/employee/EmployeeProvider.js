@@ -29,6 +29,13 @@ export const EmployeeContext = React.createContext()
         })
             .then(getEmployees)
      }
+
+     const releaseEmployee = employeeId => {
+        return fetch(`http://localhost:8088/employees/${employeeId}`, {
+            method: "DELETE"
+        })
+            .then(getEmployees)
+    }
       /*
         You return a context provider which has the
         employees` state, the `addEmployee` function,
@@ -37,7 +44,7 @@ export const EmployeeContext = React.createContext()
     */
    return (
        <EmployeeContext.Provider value={{
-           employees, addEmployee, getEmployees
+           employees, addEmployee, getEmployees, releaseEmployee
        }}>
            {props.children}
        </EmployeeContext.Provider>
