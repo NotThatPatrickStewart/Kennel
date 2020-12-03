@@ -36,10 +36,25 @@ export const AnimalForm = (props) => {
             2. Use that `id` to find the animal.
             3. Update component state variable.
     */
- 
+
+    const getAnimalInEditMode = () => {
+        if (editMode) {
+            const animalId = (props.match.params.animalId)  //did not add parseInt here
+            const selectedAnimal = animals.find(a => a.id === animalId) || {}
+            setAnimal(selectedAnimal)
+        }
+    }
+
+ // Get animals from API when component initializes
     useEffect(() => {
+        getAnimals()
         getLocations()
     }, [])
+
+// Once provider state is updated, determine the animal (if edit)
+    useEffect(() => {
+        getAnimalInEditMode()
+    }, [aniamls])
 
     const constructNewAnimal = () => {
         // const customerId = parseInt(customer.current.value)
