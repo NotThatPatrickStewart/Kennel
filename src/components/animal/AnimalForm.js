@@ -1,11 +1,11 @@
-import React, { useContext, useRef, useEffect } from "react"
+import React, { useContext, useRef, useEffect, useState } from "react"
 // import { CustomerContext } from "../customer/CustomerProvider"
 // import { EmployeeContext } from "../employee/EmployeeProvider"
 import { LocationContext } from "../location/LocationProvider"
 import { AnimalContext } from "./AnimalProvider"
 
 export const AnimalForm = (props) => {
-    const { addAnimal } = useContext(AnimalContext)
+    const { addAnimal, animals, updateAnimal, getAnimals } = useContext(AnimalContext)
     // const {customers, getCustomers} = useContext(CustomerContext)
     const { locations, getLocations } = useContext(LocationContext)
     // const { employees, getEmployees } = useContext(EmployeeContext)
@@ -15,8 +15,28 @@ export const AnimalForm = (props) => {
     // const customer = useRef(null)
     // const employee = useRef(null)
 
+    const [animal, setAnimal] = useState({})
 
+    const editMode = props.match.params.hasOwnProperty("animalId")
 
+    const handleControlledInputChange = (event) => {
+         /*
+            When changing a state object or array, always create a new one
+            and change state instead of modifying current one
+        */
+       const newAnimal = Object.assign({}, animal)
+       newAnimal[event.target.name] = event.target.value
+       setAnimal(newAnimal)
+    }
+
+       /*
+        If there is a URL parameter, then the user has chosen to
+        edit an animal.
+            1. Get the value of the URL parameter.
+            2. Use that `id` to find the animal.
+            3. Update component state variable.
+    */
+ 
     useEffect(() => {
         getLocations()
     }, [])
