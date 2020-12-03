@@ -10,6 +10,7 @@ export const Animal = ({ animal }) => ( //single line function with implied retu
             </Link>
         </h3>
         <div className="animal__breed">Breed: {animal.breed}</div>
+        {/* <div className="animal__treatment">Treatment: {animal.treatment}</div> */}
         {/* <div className="animal__location">Location: {location.name}</div> */}
     </section>
 )
