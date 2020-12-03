@@ -58,52 +58,92 @@ export const AnimalForm = (props) => {
 
     const constructNewAnimal = () => {
         // const customerId = parseInt(customer.current.value)
-        const locationId = parseInt(location.current.value)
+        const locationId = parseInt(animal.locationId)
         // const employeeId = parseInt(employee.current.value)
 
         if (locationId === 0) {
             window.alert("Please make sure location is selected")
-        }
-        else {
+        } else {
+            if (editMode) {
+                updateAnimal({
+                    id: animal.id,
+                    name: animal.name,
+                    breed: animal.breed,
+                    locationId: locationId,
+                    treatment: animal.treatment,
+                    customerId: parseInt(localStorage.getItem("kennel_customer"))
+                })
+                    .then(() => props.history.push("/animals"))
+            } else {
             addAnimal({
-                name: name.current.value,
-                locationId,
+                name: animal.name,
+                    breed: animal.breed,
+                    locationId: locationId,
+                    treatment: animal.treatment,
                 customerId: parseInt(localStorage.getItem("kennel_customer"))
-
             })
             .then(() => props.history.push("/animals"))
         }
     }
     return (
         <form className="animalForm">
-            <h2 className="animalForm__title">New Animal</h2>
+            <h2 className="animalForm__title">{editMode ? "Update Animal" : "Admit Animal"}</h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="animalName">Animal name: </label>
-                    <input type="text" id="animalName" ref={name} required autoFocus className="form-control" placeholder="Animal name" />
+                    <label htmlFor="name">Animal name: </label>
+                    <input type="text" name="name" required autoFocus className="form-control"
+                        proptype="varchar"
+                        placeholder="Animal name"
+                        defaultValue={animal.name}
+                        onChange={handleControlledInputChange}
+                    />
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="location">Assign to location: </label>
-                    <select defaultValue="" name="location" ref={location} id="animalLocation" className="form-control" >
+                    <label htmlFor="breed">Animal breed: </label>
+                    <input type="text" name="breed" required className="form-control"
+                        proptype="varchar"
+                        placeholder="Animal breed"
+                        defaultValue={animal.breed}
+                        onChange={handleControlledInputChange}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="locationId">Location: </label>
+                    <select name="locationId" className="form-control"
+                        proptype="int"
+                        value={animal.locationId}
+                        onChange={handleControlledInputChange}>
+
                         <option value="0">Select a location</option>
-                        {locations.map(a => (
-                            <option key={a.id} value={a.id}>
-                                {a.name}
+                        {locations.map(e => (
+                            <option key={e.id} value={e.id}>
+                                {e.name}
                             </option>
                         ))}
                     </select>
                 </div>
             </fieldset>
-            
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="treatment">Treatments: </label>
+                    <textarea type="text" name="treatment" className="form-control"
+                        proptype="varchar"
+                        value={animal.treatment}
+                        onChange={handleControlledInputChange}>
+                    </textarea>
+                </div>
+            </fieldset>
             <button type="submit"
                 onClick={evt => {
-                    evt.preventDefault() // Prevent browser from submitting the form
+                    evt.preventDefault()
                     constructNewAnimal()
                 }}
                 className="btn btn-primary">
-                Save Appointment
+                {editMode ? "Save Updates" : "Make Reservation"}
             </button>
         </form>
     )
