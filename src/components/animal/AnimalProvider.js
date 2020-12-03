@@ -45,6 +45,7 @@ export const AnimalContext = React.createContext()
     }
 
     const updateAnimal = animal => {
+        console.log(animal)
         return fetch(`http://localhost:8088/animals/${animal.id}`, {
             method: "PUT",
             headers: {
