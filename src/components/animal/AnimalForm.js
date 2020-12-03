@@ -41,7 +41,7 @@ export const AnimalForm = (props) => {
 
   const getAnimalInEditMode = () => {
     if (editMode) {
-      const animalId = props.match.params.animalId; //did not add parseInt here
+      const animalId = parseInt(props.match.params.animalId); //did not add parseInt here
       const selectedAnimal = animals.find((a) => a.id === animalId) || {};
       setAnimal(selectedAnimal);
     }
